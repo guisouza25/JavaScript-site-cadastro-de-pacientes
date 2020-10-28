@@ -8,14 +8,22 @@ botaoAddPaciente.addEventListener("click", function(event){
     event.preventDefault();
 
     var form = document.querySelector("#form-paciente");
-
     var paciente = criaPaciente(form);
     var pacienteTr = criaTr(paciente);
-   
+    
+    var erros = validaPaciente(paciente);
+
+    if(erros.length > 0) {
+        exibeMsgErros(erros);
+        return;
+    }
+
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
     form.reset();
+    var ul = document.querySelector(".mensagem-erro");
+    ul.innerHTML = "";
 }); 
 
 
@@ -61,5 +69,32 @@ function criaTd(dado, classe) {
     return td;
 }
 
+function validaPaciente(paciente) {
 
+    erros = []
 
+    if(paciente.nome.length == 0) {
+        erros.push("O campo nome não pode ficar em branco.");
+    }
+    if(paciente.gordura.length == 0) {
+        erros.push("O campo % de gordura não pode ficar em branco.");
+    }
+    if(!validaPeso(paciente.peso) || paciente.peso.length == 0) {
+        erros.push("O peso é inválido.")
+    }
+    if(!validaAltura(paciente.altura) || paciente.altura.length == 0) {
+        erros.push("A altura é inválida.")
+    }
+    return erros;
+}
+
+function exibeMsgErros(erros) {
+    var ul = document.querySelector(".mensagem-erro");
+    ul.innerHTML = "";
+    erros.forEach(function(erro) {
+        var li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+        erros = [];
+    });
+}
