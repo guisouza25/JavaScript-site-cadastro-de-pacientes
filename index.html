@@ -20,8 +20,12 @@
 		<main>
 			<section class="container">
 				<h2>Meus pacientes</h2>
-				<table>
-					<thead>
+				<table id="tabela-pacientes">
+
+                    <label for="filtrar-tabela">Filtre:</label>
+                    <input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente">
+                    
+					<thead >
 						<tr>
 							<th>Nome</th>
 							<th>Peso(kg)</th>
@@ -30,7 +34,7 @@
 							<th>IMC</th>
 						</tr>
 					</thead>
-					<tbody id="tabela-pacientes">
+					<tbody >
 						<tr class="paciente">
 							<td class="info-nome">Paulo</td>
 							<td class="info-peso">10540</td>
@@ -98,10 +102,11 @@
                 <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
             </form>
         </section>
-        
+
         <script src="js/form.js"></script>
         <script src="js/calcula-imc.js"></script>
         <script src="js/remover-paciente.js"></script>
+        <script src="js/filtra-pacientes.js"></script>
 
 	</body>
 </html>
