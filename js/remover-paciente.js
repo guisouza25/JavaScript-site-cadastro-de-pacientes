@@ -2,17 +2,19 @@
 var tabela = document.querySelector("#tabela-pacientes");
 
 tabela.addEventListener("dblclick", function(event) {
-        var targetEvent = event.target;
-        var eventParent = targetEvent.parentNode;
 
-        if(targetEvent.tagName == "TD") {
-            eventParent.classList.add("fadeOut");
-            //para aguardar 500 ms antes de remover que é o tempo do fadeOut
-            setTimeout(function() {
-                eventParent.remove();
-            }, 500);
-        }
-    });
+    //aqui o alvo do evento é uma célula. Eu quero o elemento pai, a tr
+    var targetEvent = event.target;
+    var eventParent = targetEvent.parentNode;
+
+    if(targetEvent.tagName == "TD") {
+        eventParent.classList.add("fadeOut");
+        //para aguardar 500 ms antes de remover que é o tempo do fadeOut
+        setTimeout(function() {
+            eventParent.remove();
+         }, 500);
+    }
+});
     
 
 // var pacientes = document.querySelectorAll(".paciente");
